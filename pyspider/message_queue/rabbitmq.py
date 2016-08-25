@@ -232,7 +232,7 @@ class AmqpQueue(PikaQueue):
                                               parsed.path.lstrip('/') or '%2F'))
         self.channel = self.connection.channel()
         try:
-            self.channel.queue_declare(self.name)
+            self.channel.queue_declare(self.name, durable=True)
         except amqp.exceptions.PreconditionFailed:
             pass
         #self.channel.queue_purge(self.name)
